@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sampleapp-canary
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: sampleapp-canary
+      labels:
+        app: sampleapp
+        env: canary
+    spec:
+      containers:
+      - name: sampleapp
+        image: eu.gcr.io/tonal-justice-216711/jenkins-sampleapp
+        imagePullPolicy: Always
+        ports:
+        - name: nginx
+          containerPort: 80
